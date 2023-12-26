@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: common_header(~{::title},~{},~{})">
+<title th:text="#{edit.edit} + ' ' + #{class.Classes}"></title>
+</head>
+<body class="d-flex flex-column min-vh-100">
+	<div th:replace="fragments/header :: header">&nbsp;</div>
+	<div class="wrapper flex-grow-1">
+
+		<form class="form-narrow form-horizontal" method="post"
+			th:action="@{/classess/save}" th:object="${classesForm}"
+			th:fragment="classesForm">
+			<!--/* Show general error messages when form contains errors */-->
+			<th:block th:if="${#fields.hasErrors('${classesForm.*}')}">
+				<div th:each="fieldErrors : ${#fields.errors('${classesForm.*}')}">
+					<div th:each="message : ${fieldErrors.split(';')}">
+						<div
+							th:replace="fragments/alert :: alert (type='danger', message=${message})">Alert</div>
+					</div>
+				</div>
+			</th:block>
+			<fieldset>
+				<legend th:unless="${classesForm.id > 0}"
+					th:text="#{edit.new} + ' ' + #{class.Classes}"></legend>
+				<legend th:if="${classesForm.id > 0}"
+					th:text="#{edit.edit} + ' ' + #{class.Classes}"></legend>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('active')}? 'has-error'">
+					<label for="active" class="col-lg-2 control-label"
+						th:text="#{Classes.active} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="active"
+							th:field="*{active}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('active')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('catagory')}? 'has-error'">
+					<label for="catagory" class="col-lg-2 control-label"
+						th:text="#{Classes.catagory} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="catagory"
+							th:field="*{catagory}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('catagory')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('classname')}? 'has-error'">
+					<label for="classname" class="col-lg-2 control-label"
+						th:text="#{Classes.classname} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="classname"
+							th:field="*{classname}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('classname')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('grp')}? 'has-error'">
+					<label for="grp" class="col-lg-2 control-label"
+						th:text="#{Classes.grp} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="grp"
+							th:field="*{grp}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('grp')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<input type="hidden" class="form-control" id="id" th:field="*{id}" />
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('replacewith')}? 'has-error'">
+					<label for="replacewith" class="col-lg-2 control-label"
+						th:text="#{Classes.replacewith} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="replacewith"
+							th:field="*{replacewith}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('replacewith')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-lg-offset-2 col-lg-10">
+						<button type="submit" name="action" value="save"
+							class="btn btn-default" th:text="#{edit.save}"></button>
+						<button type="submit" name="action" value="cancel" class="btn"
+							th:text="#{edit.cancel}"></button>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+
+	</div>
+	<div class="mt-auto" th:insert="fragments/footer :: footer">&copy;
+		2020 default</div>
+</body>
+</html>

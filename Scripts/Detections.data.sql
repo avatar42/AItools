@@ -1,0 +1,10 @@
+INSERT INTO Detections (Picid, Classid, XMin, YMin, XMax, YMax, Confidence) VALUES (10, 9, 0.435937, 0.28125, 0.35, 0.233333, 0.68749840577348575);
+INSERT INTO Detections (Picid, Classid, XMin, YMin, XMax, YMax, Confidence) VALUES (10, 10, 0.441406, 0.415625, 0.332813, 0.24375, 0.33681334927661488);
+INSERT INTO Detections (Picid, Classid, XMin, YMin, XMax, YMax, Confidence) VALUES (10, 9, 0.847656, 0.473958, 0.151562, 0.247917, 0.06310901924410095);
+INSERT INTO Detections (Picid, Classid, XMin, YMin, XMax, YMax, Confidence) VALUES (11, 73, 0.721875, 0.3875, 0.140625, 0.225, 0.66141705258899985);
+INSERT INTO Detections (Picid, Classid, XMin, YMin, XMax, YMax, Confidence) VALUES (12, 20, 0.524554, 0.691447, 0.108631, 0.119737, 0.72581049749255078);
+INSERT INTO Detections (Picid, Classid, XMin, YMin, XMax, YMax, Confidence) VALUES (12, 1, 0.281808, 0.699342, 0.100818, 0.182895, 0.26324788488698814);
+INSERT INTO Detections (Picid, Classid, XMin, YMin, XMax, YMax, Confidence) VALUES (13, 30, 0.279785, 0.354004, 0.236003, 0.136719, 0.14734139479350916);
+INSERT INTO Detections (Picid, Classid, XMin, YMin, XMax, YMax, Confidence) VALUES (13, 30, 0.470866, 0.404053, 0.075846, 0.214355, 0.20088893674476227);
+INSERT INTO Detections (Picid, Classid, XMin, YMin, XMax, YMax, Confidence) VALUES (13, 35, 0.5861, 0.593262, 0.072591, 0.128906, 0.038387478454889434);
+INSERT INTO Detections (Picid, Classid, XMin, YMin, XMax, YMax, Confidence) VALUES (13, 24, 0.283203, 0.693359, 0.039062, 0.036133, 0.82555667112739128);

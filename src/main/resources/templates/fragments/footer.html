@@ -1,0 +1,12 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	<div th:fragment="footer" th:align="center" class="mt-auto footer bg-dark text-white ">
+		&copy; <span
+			th:text="${#temporals.format(#temporals.createNow(), 'yyyy')}">2017</span>
+		<span>RMRR</span> <span sec:authorize="hasRole('ROLE_ADMIN')"
+			th:text="#{version} + ' ' + #{app.version}"></span>
+	</div>
+</body>
+</html>
+

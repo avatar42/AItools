@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: common_header(~{::title},~{},~{})">
+<title th:text="#{view.index.title}"></title>
+</head>
+<body class="d-flex flex-column min-vh-100">
+	<div th:replace="fragments/header :: header">&nbsp;</div>
+	<div class="container">
+		<h1 th:text="#{index.greeting(#{app.name})}"></h1>
+		<div th:text="#{app.description}"></div>
+	</div>
+	<div class="mt-auto" th:insert="~{fragments/footer :: footer}">&copy;
+		2020 default</div>
+</body>
+</html>

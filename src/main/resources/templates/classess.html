@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: common_header(~{::title},~{::links},~{::scripts})">
+<title th:text="#{edit.listView} + ' ' + #{class.Classes}"></title>
+<links>
+<link th:rel="stylesheet"
+	th:href="@{/webjars/datatables/css/jquery.dataTables.min.css} " />
+</links>
+<scripts> <script
+	th:src="@{/webjars/datatables/js/jquery.dataTables.min.js}"></script> </scripts>
+</head>
+<body class="d-flex flex-column min-vh-100">
+	<div th:replace="fragments/header :: header">&nbsp;</div>
+	<div class="wrapper flex-grow-1">
+
+		<div class="container-fluid" th:with="SearchForm=${session.classesSearchForm}">
+			<h1 th:text="#{class.Classes} + ' ' + #{edit.list}"></h1>
+			<a th:href="@{/classess/search}"
+				th:text="#{search.advanced} + ' ' + #{class.Classes}"></a> <br /> <a
+				th:href="@{/classess/new}"
+				th:text="#{edit.new} + ' ' + #{class.Classes}"></a> <br /> <br />
+			<div style="float: right;" th:text="#{search.like}"></div>
+
+			<table id="resultsTable" class="table table-bordered table-striped table-condensed"
+				style="width: 100%">
+				<thead>
+					<tr>
+						<th th:text="#{Classes.active}"></th>
+						<th th:text="#{Classes.catagory}"></th>
+						<th th:text="#{Classes.classname}"></th>
+						<th th:text="#{Classes.grp}"></th>
+						<th th:text="#{Classes.replacewith}"></th>
+						<th th:text="#{edit.actions}"></th>
+					</tr>
+				</thead>
+			</table>
+			<script th:inline="javascript">
+				var editLab = /*[[#{edit.edit}]]*/'[msg not found]';
+				var deleteLab = /*[[#{edit.delete}]]*/'[msg not found]';
+				var datatablesUrl = /*[[#{datatables.url}]]*/'[msg not found]';
+				var link = /*[[@{/api/classess/list}]]*/ '/api/classess/list';
+				var ctx = /*[[@{/}]]*/ '/';
+			</script>
+			<script>
+				$('#resultsTable').DataTable({
+					"processing" : true,
+					"serverSide" : true,
+				    "language" : {
+				        "url" : datatablesUrl
+					    },
+					"ajax" : {
+						"url" : link,
+						"type" : "POST",
+						"dataType" : "json",
+						"contentType" : "application/json",
+						"data" : function(d) {
+							return JSON.stringify(d);
+						}
+					},
+    				"columnDefs": [{
+        				"targets": '_all',
+        				"defaultContent": ""
+    				}],
+					"columns" : [ {
+						"name" : "active",
+						"data" : "active",
+					}, {
+						"name" : "catagory",
+						"data" : "catagory",
+					}, {
+						"name" : "classname",
+						"data" : "classname",
+					}, {
+						"name" : "grp",
+						"data" : "grp",
+					}, {
+						"name" : "replacewith",
+						"data" : "replacewith",
+					}, {
+						"data" : "id",
+						"render" : make_edit_links,
+						"width" : "10%"
+					} ]
+				});
+
+
+				function make_edit_links(id) {
+					return "<a href=\""+ctx+"classess/edit/" + id +"\" id=\"edit_"+id + "\">"
+							+ editLab
+							+ "</a> &nbsp;&nbsp;&nbsp;"
+							+ "<a href=\""+ctx+"classess/delete/" + id +"\" id=\"delete_"+id + "\">"
+							+ deleteLab + "</a>";
+				}
+			</script>
+		</div>
+
+	</div>
+	<div class="mt-auto" th:insert="fragments/footer :: footer">&copy;
+		2020 default</div>
+</body>
+</html>

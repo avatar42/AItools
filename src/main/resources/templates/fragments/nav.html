@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	<ul class="navbar-nav mr-auto">
+		<li th:fragment="guiMenu" id="guiMenu" class="nav-item dropdown"><a
+			href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"
+			aria-haspopup="true" aria-expanded="false"><span
+				th:text="#{header.gui}"></span> <b class="caret"></b> </a>
+			<ul class="dropdown-menu bg-dark">
+								<li sec:authorize="hasRole('ROLE_ADMIN')"  th:classappend="${module == 'account' ? 'active' : ''}">
+    								<a id="guiItemAccount" th:href="@{/accounts/list}" th:text="#{class.Account}"></a></li>
+								<li th:classappend="${module == 'pics' ? 'active' : ''}">
+    								<a id="guiItemPics" th:href="@{/picss/list}" th:text="#{class.Pics}"></a></li>
+								<li th:classappend="${module == 'detections' ? 'active' : ''}">
+    								<a id="guiItemDetections" th:href="@{/detectionss/list}" th:text="#{class.Detections}"></a></li>
+								<li th:classappend="${module == 'classes' ? 'active' : ''}">
+    								<a id="guiItemClasses" th:href="@{/classess/list}" th:text="#{class.Classes}"></a></li>
+			</ul></li>
+		<li th:fragment="restMenu" id="restMenu" class="nav-item dropdown"><a
+			href="#" class="nav-link dropdown-toggle" data-toggle="dropdown"
+			aria-haspopup="true" aria-expanded="false"><span
+				th:text="#{header.restApi}"></span> <b class="caret"></b> </a>
+			<ul class="dropdown-menu bg-dark">
+								<li sec:authorize="hasRole('ROLE_ADMIN')"  th:classappend="${module == 'account' ? 'active' : ''}">
+    								<a id="apiItemAccount" th:href="@{/api/accounts}" th:text="#{class.Account}"></a></li>
+								<li th:classappend="${module == 'pics' ? 'active' : ''}">
+    								<a id="apiItemPics" th:href="@{/api/picss}" th:text="#{class.Pics}"></a></li>
+								<li th:classappend="${module == 'detections' ? 'active' : ''}">
+    								<a id="apiItemDetections" th:href="@{/api/detectionss}" th:text="#{class.Detections}"></a></li>
+								<li th:classappend="${module == 'classes' ? 'active' : ''}">
+    								<a id="apiItemClasses" th:href="@{/api/classess}" th:text="#{class.Classes}"></a></li>
+			</ul></li>
+		<li th:fragment="staticMenu" id="staticMenu" class="nav-item dropdown">
+							</li>
+					</ul>
+</body>
+</html>

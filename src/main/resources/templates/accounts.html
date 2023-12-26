@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: common_header(~{::title},~{::links},~{::scripts})">
+<title th:text="#{edit.listView} + ' ' + #{class.Account}"></title>
+<links>
+<link th:rel="stylesheet"
+	th:href="@{/webjars/datatables/css/jquery.dataTables.min.css} " />
+</links>
+<scripts> <script
+	th:src="@{/webjars/datatables/js/jquery.dataTables.min.js}"></script> </scripts>
+</head>
+<body class="d-flex flex-column min-vh-100">
+	<div th:replace="fragments/header :: header">&nbsp;</div>
+	<div class="wrapper flex-grow-1">
+
+		<div class="container-fluid" th:with="SearchForm=${session.accountSearchForm}">
+			<h1 th:text="#{class.Account} + ' ' + #{edit.list}"></h1>
+			<a th:href="@{/accounts/search}"
+				th:text="#{search.advanced} + ' ' + #{class.Account}"></a> <br /> <a
+				th:href="@{/accounts/new}"
+				th:text="#{edit.new} + ' ' + #{class.Account}"></a> <br /> <br />
+			<div style="float: right;" th:text="#{search.like}"></div>
+
+			<table id="resultsTable" class="table table-bordered table-striped table-condensed"
+				style="width: 100%">
+				<thead>
+					<tr>
+						<th sec:authorize="hasRole('ROLE_ADMIN')"  th:text="#{Account.email}"></th>
+						<th sec:authorize="hasRole('ROLE_ADMIN')"  th:text="#{Account.name}"></th>
+						<th sec:authorize="hasRole('ROLE_ADMIN')"  th:text="#{Account.userrole}"></th>
+						<th th:text="#{edit.actions}"></th>
+					</tr>
+				</thead>
+			</table>
+			<script th:inline="javascript">
+				var editLab = /*[[#{edit.edit}]]*/'[msg not found]';
+				var deleteLab = /*[[#{edit.delete}]]*/'[msg not found]';
+				var datatablesUrl = /*[[#{datatables.url}]]*/'[msg not found]';
+				var link = /*[[@{/api/accounts/list}]]*/ '/api/accounts/list';
+				var ctx = /*[[@{/}]]*/ '/';
+			</script>
+			<script>
+				$('#resultsTable').DataTable({
+					"processing" : true,
+					"serverSide" : true,
+				    "language" : {
+				        "url" : datatablesUrl
+					    },
+					"ajax" : {
+						"url" : link,
+						"type" : "POST",
+						"dataType" : "json",
+						"contentType" : "application/json",
+						"data" : function(d) {
+							return JSON.stringify(d);
+						}
+					},
+    				"columnDefs": [{
+        				"targets": '_all',
+        				"defaultContent": ""
+    				}],
+					"columns" : [ {
+						"name" : "email",
+						"data" : "email",
+					}, {
+						"name" : "name",
+						"data" : "name",
+					}, {
+						"name" : "userrole",
+						"data" : "userrole",
+					}, {
+						"data" : "id",
+						"render" : make_edit_links,
+						"width" : "10%"
+					} ]
+				});
+
+
+				function make_edit_links(id) {
+					return "<a href=\""+ctx+"accounts/edit/" + id +"\" id=\"edit_"+id + "\">"
+							+ editLab
+							+ "</a> &nbsp;&nbsp;&nbsp;"
+							+ "<a href=\""+ctx+"accounts/delete/" + id +"\" id=\"delete_"+id + "\">"
+							+ deleteLab + "</a>";
+				}
+			</script>
+		</div>
+
+	</div>
+	<div class="mt-auto" th:insert="fragments/footer :: footer">&copy;
+		2020 default</div>
+</body>
+</html>

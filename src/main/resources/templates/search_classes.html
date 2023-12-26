@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: common_header(~{::title},~{},~{})">
+<title th:text="#{search.advanced} + ' ' + #{class.Classes}"></title>
+</head>
+<body class="d-flex flex-column min-vh-100">
+	<div th:replace="fragments/header :: header">&nbsp;</div>
+	<div class="wrapper flex-grow-1">
+
+		<form class="form-narrow form-horizontal" method="post"
+			th:action="@{/classess/search}" 
+			th:object="${classesSearchForm}"
+			th:fragment="classesSearchForm">
+			<!--/* Show general error messages when form contains errors */-->
+			<th:block th:if="${#fields.hasErrors('${classesSearchForm.*}')}">
+				<div 
+					th:each="fieldErrors : ${#fields.errors('${classesSearchForm.*}')}">
+					<div th:each="message : ${fieldErrors.split(';')}">
+						<div
+							th:replace="fragments/alert :: alert (type='danger', message=${message})">Alert</div>
+					</div>
+				</div>
+			</th:block>
+			<fieldset>
+				<legend th:text="#{search.advanced} + ' ' + #{class.Classes}"></legend>
+
+				<div class="form-group">
+					<label for="classesSearchForm.doOr"
+						th:text="#{search.doOr} + ' ' + #{search.like}">Select
+						type</label> <select class="form-control selectpicker" th:field="*{doOr}"
+						id="classesSearchForm.doOr">
+						<option
+							th:each="doOr : ${T(com.dea42.aitools.search.SearchType).values()}"
+							th:value="${doOr}" th:text="${doOr}"></option>
+					</select>
+				</div>
+
+<!-- info=ColInfo(fNum=5, colName=Active, msgKey=Classes.active, vName=active, type=Integer, jtype=null, stype=4, gsName=Active, length=0, pk=false, defaultVal=null, constraint=null, required=false, list=true, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment=null) -->
+				<div class="form-group">
+					<label for="activeMin" class="col-lg-2 control-label"
+						th:text="#{Classes.active} + ' ' + #{search.gte}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="activeMin"
+							th:field="*{activeMin}" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="activeMax" class="col-lg-2 control-label"
+						th:text="#{Classes.active} + ' ' + #{search.lte}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="activeMax"
+							th:field="*{activeMax}" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="catagory" class="col-lg-2 control-label"
+						th:text="#{Classes.catagory} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="catagory"
+							th:field="*{catagory}" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="classname" class="col-lg-2 control-label"
+						th:text="#{Classes.classname} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="classname"
+							th:field="*{classname}" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="grp" class="col-lg-2 control-label"
+						th:text="#{Classes.grp} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="grp"
+							th:field="*{grp}" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="replacewith" class="col-lg-2 control-label"
+						th:text="#{Classes.replacewith} + ' ' + #{search.like}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="replacewith"
+							th:field="*{replacewith}" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-lg-offset-2 col-lg-10">
+						<button type="submit" name="action" value="search"
+							class="btn btn-default" th:text="#{search.search}"></button>
+						<button type="submit" name="action" value="reset"
+							class="btn btn-default" th:text="#{search.reset}"></button>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+
+	</div>
+	<div class="mt-auto" th:insert="fragments/footer :: footer">&copy;
+		2020 default</div>
+</body>
+</html>

@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: common_header(~{::title},~{},~{})">
+<title th:text="#{edit.edit} + ' ' + #{class.Account}"></title>
+</head>
+<body class="d-flex flex-column min-vh-100">
+	<div th:replace="fragments/header :: header">&nbsp;</div>
+	<div class="wrapper flex-grow-1">
+
+		<form class="form-narrow form-horizontal" method="post"
+			th:action="@{/accounts/save}" th:object="${accountForm}"
+			th:fragment="accountForm">
+			<!--/* Show general error messages when form contains errors */-->
+			<th:block th:if="${#fields.hasErrors('${accountForm.*}')}">
+				<div th:each="fieldErrors : ${#fields.errors('${accountForm.*}')}">
+					<div th:each="message : ${fieldErrors.split(';')}">
+						<div
+							th:replace="fragments/alert :: alert (type='danger', message=${message})">Alert</div>
+					</div>
+				</div>
+			</th:block>
+			<fieldset>
+				<legend th:unless="${accountForm.id > 0}"
+					th:text="#{edit.new} + ' ' + #{class.Account}"></legend>
+				<legend th:if="${accountForm.id > 0}"
+					th:text="#{edit.edit} + ' ' + #{class.Account}"></legend>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('email')}? 'has-error'">
+					<label for="email" class="col-lg-2 control-label"
+						th:text="#{Account.email} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="email"
+							th:field="*{email}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('email')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<input type="hidden" class="form-control" id="id" th:field="*{id}" />
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('name')}? 'has-error'">
+					<label for="name" class="col-lg-2 control-label"
+						th:text="#{Account.name} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="name"
+							th:field="*{name}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('name')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('password')}? 'has-error'">
+					<label for="password" class="col-lg-2 control-label"
+						th:text="#{Account.password} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="password"
+							th:field="*{password}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('password')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('password')}? 'has-error'">
+					<label for="password" class="col-lg-2 control-label"
+						th:text="#{Account.passwordConfirm} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="passwordConfirm"
+							th:field="*{passwordConfirm}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('passwordConfirm')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group"
+					th:classappend="${#fields.hasErrors('userrole')}? 'has-error'">
+					<label for="userrole" class="col-lg-2 control-label"
+						th:text="#{Account.userrole} + ':'"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="userrole"
+							th:field="*{userrole}" />
+						<ul class="help-block"
+							th:each="error: ${#fields.errors('userrole')}">
+							<li th:each="message : ${error.split(';')}">
+								<p class="error-message" th:text="${message}"></p>
+							</li>
+						</ul>
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-lg-offset-2 col-lg-10">
+						<button type="submit" name="action" value="save"
+							class="btn btn-default" th:text="#{edit.save}"></button>
+						<button type="submit" name="action" value="cancel" class="btn"
+							th:text="#{edit.cancel}"></button>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+
+	</div>
+	<div class="mt-auto" th:insert="fragments/footer :: footer">&copy;
+		2020 default</div>
+</body>
+</html>

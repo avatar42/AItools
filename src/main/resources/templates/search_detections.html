@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: common_header(~{::title},~{},~{})">
+<title th:text="#{search.advanced} + ' ' + #{class.Detections}"></title>
+</head>
+<body class="d-flex flex-column min-vh-100">
+	<div th:replace="fragments/header :: header">&nbsp;</div>
+	<div class="wrapper flex-grow-1">
+
+		<form class="form-narrow form-horizontal" method="post"
+			th:action="@{/detectionss/search}" 
+			th:object="${detectionsSearchForm}"
+			th:fragment="detectionsSearchForm">
+			<!--/* Show general error messages when form contains errors */-->
+			<th:block th:if="${#fields.hasErrors('${detectionsSearchForm.*}')}">
+				<div 
+					th:each="fieldErrors : ${#fields.errors('${detectionsSearchForm.*}')}">
+					<div th:each="message : ${fieldErrors.split(';')}">
+						<div
+							th:replace="fragments/alert :: alert (type='danger', message=${message})">Alert</div>
+					</div>
+				</div>
+			</th:block>
+			<fieldset>
+				<legend th:text="#{search.advanced} + ' ' + #{class.Detections}"></legend>
+
+				<div class="form-group">
+					<label for="detectionsSearchForm.doOr"
+						th:text="#{search.doOr} + ' ' + #{search.like}">Select
+						type</label> <select class="form-control selectpicker" th:field="*{doOr}"
+						id="detectionsSearchForm.doOr">
+						<option
+							th:each="doOr : ${T(com.dea42.aitools.search.SearchType).values()}"
+							th:value="${doOr}" th:text="${doOr}"></option>
+					</select>
+				</div>
+
+<!-- info=ColInfo(fNum=3, colName=Classid, msgKey=Detections.classid, vName=classid, type=Integer, jtype=null, stype=4, gsName=Classid, length=0, pk=false, defaultVal=null, constraint=null, required=false, list=true, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment=null) -->
+				<div class="form-group">
+					<label for="classidMin" class="col-lg-2 control-label"
+						th:text="#{Detections.classid} + ' ' + #{search.gte}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="classidMin"
+							th:field="*{classidMin}" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="classidMax" class="col-lg-2 control-label"
+						th:text="#{Detections.classid} + ' ' + #{search.lte}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="classidMax"
+							th:field="*{classidMax}" />
+					</div>
+				</div>
+
+<!-- info=ColInfo(fNum=8, colName=Confidence, msgKey=Detections.confidence, vName=confidence, type=BigDecimal, jtype=null, stype=6, gsName=Confidence, length=0, pk=false, defaultVal=null, constraint=null, required=false, list=true, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=10, colPrecision=2000000000, comment=null) -->
+				<div class="form-group">
+					<label for="confidenceMin" class="col-lg-2 control-label"
+						th:text="#{Detections.confidence} + ' ' + #{search.gte}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="confidenceMin"
+							th:field="*{confidenceMin}" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="confidenceMax" class="col-lg-2 control-label"
+						th:text="#{Detections.confidence} + ' ' + #{search.lte}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="confidenceMax"
+							th:field="*{confidenceMax}" />
+					</div>
+				</div>
+
+<!-- info=ColInfo(fNum=2, colName=Picid, msgKey=Detections.picid, vName=picid, type=Integer, jtype=null, stype=4, gsName=Picid, length=0, pk=false, defaultVal=null, constraint=null, required=false, list=true, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=0, colPrecision=0, comment=null) -->
+				<div class="form-group">
+					<label for="picidMin" class="col-lg-2 control-label"
+						th:text="#{Detections.picid} + ' ' + #{search.gte}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="picidMin"
+							th:field="*{picidMin}" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="picidMax" class="col-lg-2 control-label"
+						th:text="#{Detections.picid} + ' ' + #{search.lte}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="picidMax"
+							th:field="*{picidMax}" />
+					</div>
+				</div>
+
+<!-- info=ColInfo(fNum=6, colName=XMax, msgKey=Detections.xmax, vName=xmax, type=BigDecimal, jtype=null, stype=6, gsName=Xmax, length=0, pk=false, defaultVal=null, constraint=null, required=false, list=true, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=10, colPrecision=2000000000, comment=null) -->
+				<div class="form-group">
+					<label for="xmaxMin" class="col-lg-2 control-label"
+						th:text="#{Detections.xmax} + ' ' + #{search.gte}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="xmaxMin"
+							th:field="*{xmaxMin}" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="xmaxMax" class="col-lg-2 control-label"
+						th:text="#{Detections.xmax} + ' ' + #{search.lte}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="xmaxMax"
+							th:field="*{xmaxMax}" />
+					</div>
+				</div>
+
+<!-- info=ColInfo(fNum=4, colName=XMin, msgKey=Detections.xmin, vName=xmin, type=BigDecimal, jtype=null, stype=6, gsName=Xmin, length=0, pk=false, defaultVal=null, constraint=null, required=false, list=true, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=10, colPrecision=2000000000, comment=null) -->
+				<div class="form-group">
+					<label for="xminMin" class="col-lg-2 control-label"
+						th:text="#{Detections.xmin} + ' ' + #{search.gte}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="xminMin"
+							th:field="*{xminMin}" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="xminMax" class="col-lg-2 control-label"
+						th:text="#{Detections.xmin} + ' ' + #{search.lte}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="xminMax"
+							th:field="*{xminMax}" />
+					</div>
+				</div>
+
+<!-- info=ColInfo(fNum=7, colName=YMax, msgKey=Detections.ymax, vName=ymax, type=BigDecimal, jtype=null, stype=6, gsName=Ymax, length=0, pk=false, defaultVal=null, constraint=null, required=false, list=true, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=10, colPrecision=2000000000, comment=null) -->
+				<div class="form-group">
+					<label for="ymaxMin" class="col-lg-2 control-label"
+						th:text="#{Detections.ymax} + ' ' + #{search.gte}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="ymaxMin"
+							th:field="*{ymaxMin}" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="ymaxMax" class="col-lg-2 control-label"
+						th:text="#{Detections.ymax} + ' ' + #{search.lte}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="ymaxMax"
+							th:field="*{ymaxMax}" />
+					</div>
+				</div>
+
+<!-- info=ColInfo(fNum=5, colName=YMin, msgKey=Detections.ymin, vName=ymin, type=BigDecimal, jtype=null, stype=6, gsName=Ymin, length=0, pk=false, defaultVal=null, constraint=null, required=false, list=true, jsonIgnore=false, unique=false, hidden=false, password=false, email=false, created=false, lastMod=false, adminOnly=false, foreignTable=null, foreignCol=null, colScale=10, colPrecision=2000000000, comment=null) -->
+				<div class="form-group">
+					<label for="yminMin" class="col-lg-2 control-label"
+						th:text="#{Detections.ymin} + ' ' + #{search.gte}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="yminMin"
+							th:field="*{yminMin}" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label for="yminMax" class="col-lg-2 control-label"
+						th:text="#{Detections.ymin} + ' ' + #{search.lte}"></label>
+					<div class="col-lg-10">
+						<input type="text" class="form-control" id="yminMax"
+							th:field="*{yminMax}" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<div class="col-lg-offset-2 col-lg-10">
+						<button type="submit" name="action" value="search"
+							class="btn btn-default" th:text="#{search.search}"></button>
+						<button type="submit" name="action" value="reset"
+							class="btn btn-default" th:text="#{search.reset}"></button>
+					</div>
+				</div>
+			</fieldset>
+		</form>
+
+	</div>
+	<div class="mt-auto" th:insert="fragments/footer :: footer">&copy;
+		2020 default</div>
+</body>
+</html>

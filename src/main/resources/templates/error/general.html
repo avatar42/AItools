@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html xmlns:th="www.thymeleaf.org">
+<head th:replace="fragments/header :: common_header(~{::title},~{},~{})">
+<title>Error page</title>
+</head>
+<body>
+	<div class="container">
+		<div
+			th:replace="fragments/alert :: alert (type='danger', message=${errorMessage})">Error:
+			Error</div>
+		<div th:insert="fragments/footer :: footer">&copy; 2020 default</div>
+	</div>
+</body>
+</html>

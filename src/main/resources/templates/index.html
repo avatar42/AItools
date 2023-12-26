@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/header :: common_header(~{::title},~{},~{})">
+<title th:text="#{header.home}"></title>
+</head>
+<body class="d-flex flex-column min-vh-100">
+	<div th:replace="fragments/header :: header">&nbsp;</div>
+	<div class="wrapper flex-grow-1">
+
+    	<a  sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/accounts}">Account</a><br>
+    	<a th:href="@{/picss}">Pics</a><br>
+    	<a th:href="@{/detectionss}">Detections</a><br>
+    	<a th:href="@{/classess}">Classes</a><br>
+    	<a th:href="@{/api/}">/api/</a><br>
+    	<a th:href="@{/login}">Login</a><br>
+	</div>
+	<div class="mt-auto" th:insert="fragments/footer :: footer">&copy;
+		2020 default</div>
+</body>
+</html>
