@@ -4,16 +4,19 @@ import com.dea42.aitools.entity.Account;
 import com.dea42.aitools.entity.Classes;
 import com.dea42.aitools.entity.Detections;
 import com.dea42.aitools.entity.Pics;
+import com.dea42.aitools.entity.Servers;
 import com.dea42.aitools.paging.PageInfo;
 import com.dea42.aitools.paging.PagingRequest;
 import com.dea42.aitools.search.AccountSearchForm;
 import com.dea42.aitools.search.ClassesSearchForm;
 import com.dea42.aitools.search.DetectionsSearchForm;
 import com.dea42.aitools.search.PicsSearchForm;
+import com.dea42.aitools.search.ServersSearchForm;
 import com.dea42.aitools.service.AccountServices;
 import com.dea42.aitools.service.ClassesServices;
 import com.dea42.aitools.service.DetectionsServices;
 import com.dea42.aitools.service.PicsServices;
+import com.dea42.aitools.service.ServersServices;
 import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,6 +44,8 @@ public class ApiController {
     @Autowired
     private AccountServices accountServices;
     @Autowired
+    private ServersServices serversServices;
+    @Autowired
     private PicsServices picsServices;
     @Autowired
     private DetectionsServices detectionsServices;
@@ -59,6 +64,17 @@ public class ApiController {
 	public PageInfo<Account> listAccount(HttpServletRequest request,@RequestBody PagingRequest pagingRequest) {
 
 		return accountServices.getAccounts(request, pagingRequest);
+	}
+
+    @GetMapping("/serverss")
+    public List<Servers> getAllServerss(){
+        return this.serversServices.listAll(null).toList();
+    }
+
+	@PostMapping(value = "/serverss/list")
+	public PageInfo<Servers> listServers(HttpServletRequest request,@RequestBody PagingRequest pagingRequest) {
+
+		return serversServices.getServerss(request, pagingRequest);
 	}
 
     @GetMapping("/picss")

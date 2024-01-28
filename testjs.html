@@ -1,0 +1,86 @@
+<html>
+<body>
+	<form name="uploadForm" onsubmit="handleFiles();">
+		<div>
+			<label for="uploadInput">Choose an image to test:</label> <input
+				id="uploadInput" type="file" multiple accept="image/png, image/jpeg" />
+			<label for="fileNum">Selected files:</label>
+			<output id="fileNum">0</output>
+			; <label for="fileSize">Total size:</label>
+			<output id="fileSize">0</output>
+		</div>
+		<div>
+			<input type="submit" value="Send file" />
+		</div>
+	</form>
+	<script type="text/javascript">
+const uploadInput = document.getElementById("uploadInput");
+uploadInput.addEventListener(
+  "change",
+  () => {
+    // Calculate total size
+    let numberOfBytes = 0;
+    for (const file of uploadInput.files) {
+      numberOfBytes += file.size;
+    }
+
+    // Approximate to the closest prefixed unit
+    const units = [
+      "B",
+      "KiB",
+      "MiB",
+      "GiB",
+      "TiB",
+      "PiB",
+      "EiB",
+      "ZiB",
+      "YiB",
+    ];
+    const exponent = Math.min(
+      Math.floor(Math.log(numberOfBytes) / Math.log(1024)),
+      units.length - 1,
+    );
+    const approx = numberOfBytes / 1024 ** exponent;
+    const output =
+      exponent === 0
+        ? `${numberOfBytes} bytes`
+        : `${approx.toFixed(3)} ${
+            units[exponent]
+          } (${numberOfBytes} bytes)`;
+
+    document.getElementById("fileNum").textContent = uploadInput.files.length;
+    document.getElementById("fileSize").textContent = output;
+	 console.log("saw change");
+	 var formData = new FormData();
+	 formData.append('image', uploadInput.files[0]);
+	 formData.append("min_confidence", 0.4);
+
+	 var url = 'http://localhost:32168/v1/vision/detection';
+
+	 fetch(url, { method: "POST", body: formData})
+	    .then(response => {
+	         if (response.ok) {
+	             response.json().then(data => {
+	                 console.log("success: " + data.success)
+	                 console.log("message: " + data.message)
+	                 console.log("error: " + data.error)
+	                 console.log("predictions: " + JSON.stringify(data.predictions))
+	                 console.log("count: " + data.count)
+	                 console.log("command: " + data.command)
+	                 console.log("moduleId: " + data.moduleId)
+	                 console.log("executionProvider: " + data.executionProvider)
+	                 console.log("canUseGPU: " + data.canUseGPU)
+	                 console.log("inferenceMs: " + data.inferenceMs)
+	                 console.log("processMs: " + data.processMs)
+	                 console.log("analysisRoundTripMs: " + data.analysisRoundTripMs)
+	             })
+	         }
+	     });
+		 console.log("done");
+  },
+  false,
+);
+
+</script>
+</body>
+</html>

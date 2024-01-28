@@ -27,6 +27,14 @@ Account edit screen
 
 
 ### User screens
+#### Servers screens
+Servers list screen
+![Servers list screen](screenshots/Servers.list.png)
+Servers new screen
+![Servers new screen](screenshots/Servers.new.png)
+Servers edit screen
+![Servers edit screen](screenshots/Servers.edit.png)
+
 #### Pics screens
 Pics list screen
 ![Pics list screen](screenshots/Pics.list.png)

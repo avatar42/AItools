@@ -1,0 +1,9 @@
+INSERT INTO Servers (Url, Model) VALUES ('http://10.10.2.197:82/v1/vision/', 'detection');
+INSERT INTO Servers (Url, Model) VALUES ('http://10.10.2.197:82/v1/vision/custom/', 'openlogo');
+INSERT INTO Servers (Url, Model) VALUES ('http://10.10.2.197:82/v1/vision/custom/', 'licence-plate');
+INSERT INTO Servers (Url, Model) VALUES ('http://10.10.2.197:82/v1/vision/custom/', 'dark');
+INSERT INTO Servers (Url, Model) VALUES ('http://10.10.2.197:82/v1/vision/custom/', 'actionnetv2');
+INSERT INTO Servers (Url, Model) VALUES ('http://10.10.2.197:82/v1/vision/custom/', 'RMRR');
+INSERT INTO Servers (Url, Model) VALUES ('http://10.10.2.197:82/v1/vision/custom/', 'birds');
+INSERT INTO Servers (Url, Model) VALUES ('http://10.10.2.197:82/v1/vision/custom/', 'fire');
+INSERT INTO Servers (Url, Model) VALUES ('http://10.10.2.183:32168/v1/vision/', 'detection');

@@ -9,6 +9,8 @@
 			<ul class="dropdown-menu bg-dark">
 								<li sec:authorize="hasRole('ROLE_ADMIN')"  th:classappend="${module == 'account' ? 'active' : ''}">
     								<a id="guiItemAccount" th:href="@{/accounts/list}" th:text="#{class.Account}"></a></li>
+								<li th:classappend="${module == 'servers' ? 'active' : ''}">
+    								<a id="guiItemServers" th:href="@{/serverss/list}" th:text="#{class.Servers}"></a></li>
 								<li th:classappend="${module == 'pics' ? 'active' : ''}">
     								<a id="guiItemPics" th:href="@{/picss/list}" th:text="#{class.Pics}"></a></li>
 								<li th:classappend="${module == 'detections' ? 'active' : ''}">
@@ -23,6 +25,8 @@
 			<ul class="dropdown-menu bg-dark">
 								<li sec:authorize="hasRole('ROLE_ADMIN')"  th:classappend="${module == 'account' ? 'active' : ''}">
     								<a id="apiItemAccount" th:href="@{/api/accounts}" th:text="#{class.Account}"></a></li>
+								<li th:classappend="${module == 'servers' ? 'active' : ''}">
+    								<a id="apiItemServers" th:href="@{/api/serverss}" th:text="#{class.Servers}"></a></li>
 								<li th:classappend="${module == 'pics' ? 'active' : ''}">
     								<a id="apiItemPics" th:href="@{/api/picss}" th:text="#{class.Pics}"></a></li>
 								<li th:classappend="${module == 'detections' ? 'active' : ''}">

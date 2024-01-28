@@ -36,6 +36,8 @@ import com.dea42.aitools.service.UserServices;
 import com.dea42.aitools.repo.UserRepository;
 import com.dea42.aitools.repo.AccountRepository;
 import com.dea42.aitools.service.AccountServices;
+import com.dea42.aitools.repo.ServersRepository;
+import com.dea42.aitools.service.ServersServices;
 import com.dea42.aitools.repo.PicsRepository;
 import com.dea42.aitools.service.PicsServices;
 import com.dea42.aitools.repo.DetectionsRepository;
@@ -67,6 +69,10 @@ public class MockBase extends UnitBase {
     protected AccountServices accountServices;
     @MockBean
     protected AccountRepository accountRepository;
+    @MockBean
+    protected ServersServices serversServices;
+    @MockBean
+    protected ServersRepository serversRepository;
     @MockBean
     protected PicsServices picsServices;
     @MockBean
@@ -170,6 +176,7 @@ public class MockBase extends UnitBase {
 		contentContainsKey(result, "header.gui");
 		if ("admin@dea42.com".equals(user)) 
 			contentContainsKey(result, "class.Account", false);
+		contentContainsKey(result, "class.Servers", false);
 		contentContainsKey(result, "class.Pics", false);
 		contentContainsKey(result, "class.Detections", false);
 		contentContainsKey(result, "class.Classes", false);
@@ -177,6 +184,7 @@ public class MockBase extends UnitBase {
 		contentContainsKey(result, "header.restApi");
 		if ("admin@dea42.com".equals(user)) 
 			contentContainsMarkup(result, "/api/accounts", false);
+		contentContainsMarkup(result, "/api/serverss", false);
 		contentContainsMarkup(result, "/api/picss", false);
 		contentContainsMarkup(result, "/api/detectionss", false);
 		contentContainsMarkup(result, "/api/classess", false);

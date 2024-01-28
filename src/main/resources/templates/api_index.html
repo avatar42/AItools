@@ -8,6 +8,7 @@
 	<div class="wrapper flex-grow-1">
 
     	<a  sec:authorize="hasRole('ROLE_ADMIN')" th:href="@{/api/accounts}">Account</a><br>
+    	<a th:href="@{/api/serverss}">Servers</a><br>
     	<a th:href="@{/api/picss}">Pics</a><br>
     	<a th:href="@{/api/detectionss}">Detections</a><br>
     	<a th:href="@{/api/classess}">Classes</a><br>

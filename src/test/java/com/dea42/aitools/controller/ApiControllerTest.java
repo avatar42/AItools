@@ -18,6 +18,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.dea42.aitools.MockBase;
 import com.dea42.aitools.entity.Account;
+import com.dea42.aitools.entity.Servers;
 import com.dea42.aitools.entity.Pics;
 import com.dea42.aitools.entity.Detections;
 import com.dea42.aitools.entity.Classes;
@@ -58,6 +59,28 @@ public class ApiControllerTest extends MockBase {
 				.andExpect(content().string(containsString("email")))				.andExpect(content().string(containsString("id")))				.andExpect(content().string(containsString(o.getName())))
 				.andExpect(content().string(containsString("name")))				.andExpect(content().string(containsString(o.getUserrole())))
 				.andExpect(content().string(containsString("userrole")));
+	}
+
+
+	/**
+	 * Test method for
+	 * {@link com.dea42.aitools.controller.ServersController#getAllServerss(org.springframework.ui.Model)}.
+	 */
+	@Test
+	public void testGetAllServerss() throws Exception {
+		List<Servers> list = new ArrayList<>();
+		Servers o = new Servers();
+		o.setId(1);
+        o.setModel(getTestString(13));
+        o.setUrl(getTestString(39));
+		list.add(o);
+		Page<Servers> p = getPage(list);
+		given(serversServices.listAll(null)).willReturn(p);
+
+		this.mockMvc.perform(get("/api/serverss").with(user("user").roles("ADMIN"))).andExpect(status().isOk())
+				.andExpect(content().string(containsString("id")))				.andExpect(content().string(containsString(o.getModel())))
+				.andExpect(content().string(containsString("model")))				.andExpect(content().string(containsString(o.getUrl())))
+				.andExpect(content().string(containsString("url")));
 	}
 
 
