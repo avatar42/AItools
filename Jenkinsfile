@@ -1,0 +1,98 @@
+pipeline {
+    agent any
+
+    options {
+        skipStagesAfterUnstable()
+    }
+    
+    tools {
+        // Install the Maven version configured as "M3" and add it to the path.
+        maven "M3"
+    }
+    environment {
+        NEXUS_VERSION = "nexus3"
+        NEXUS_PROTOCOL = "http"
+        NEXUS_URL = "10.10.2.197:8081"
+        NEXUS_REPOSITORY = "maven-nexus-repo"
+        NEXUS_CREDENTIAL_ID = "nexus-user-credentials"
+    }
+    stages {
+        stage('Source') {
+            steps {
+                // Get some code from a GitHub repository
+                git branch: "main", url: 'https://github.com/avatar42/AItools.gitt'
+            }
+        }
+        stage('Build') {
+            steps {
+                // Run Maven on a Unix agent.
+                sh "mvn -B -DskipTests clean package"
+            }
+
+        }
+        stage('Test') {
+            steps {
+                sh 'mvn test -Dmaven.test.failure.ignore=true'
+            }
+            post {
+                // If Maven was able to run the tests, even if some of the test
+                // failed, record the test results and archive the jar file.
+                success {
+                    junit '**/target/surefire-reports/TEST-*.xml'
+                    archiveArtifacts 'target/*.jar'
+                }
+                always {
+                    junit 'target/surefire-reports/*.xml'
+                }
+            }
+        }
+        stage("coverage") {
+            steps {
+                // Run Maven on a Unix agent.
+                sh "mvn verify"
+                recordCoverage(tools: [[parser: 'JACOCO']],
+                    id: 'jacoco', name: 'JaCoCo Coverage',
+                    sourceCodeRetention: 'EVERY_BUILD',
+                    qualityGates: [
+                            [threshold: 60.0, metric: 'LINE', baseline: 'PROJECT', unstable: true],
+                            [threshold: 60.0, metric: 'BRANCH', baseline: 'PROJECT', unstable: true]])
+            }
+        }
+        stage("Publish to Nexus Repository Manager") {
+            steps {
+                script {
+                    pom = readMavenPom file: "pom.xml";
+                    filesByGlob = findFiles(glob: "target/*.${pom.packaging}");
+                    echo "${filesByGlob[0].name} ${filesByGlob[0].path} ${filesByGlob[0].directory} ${filesByGlob[0].length} ${filesByGlob[0].lastModified}"
+                    artifactPath = filesByGlob[0].path;
+                    artifactExists = fileExists artifactPath;
+                    if(artifactExists) {
+                        echo "*** File: ${artifactPath}, group: ${pom.groupId}, packaging: ${pom.packaging}, version ${pom.version}";
+                        nexusArtifactUploader(
+                            nexusVersion: NEXUS_VERSION,
+                            protocol: NEXUS_PROTOCOL,
+                            nexusUrl: NEXUS_URL,
+                            groupId: pom.groupId,
+                            version: pom.version,
+                            repository: NEXUS_REPOSITORY,
+                            credentialsId: NEXUS_CREDENTIAL_ID,
+                            artifacts: [
+                                [artifactId: pom.artifactId,
+                                classifier: '',
+                                file: artifactPath,
+                                type: pom.packaging],
+                                [artifactId: pom.artifactId,
+                                classifier: '',
+                                file: "pom.xml",
+                                type: "pom"]
+                            ]
+                        );
+                    } else {
+                        error "*** File: ${artifactPath}, could not be found";
+                    }
+                }
+            }
+        }
+
+    }
+}
