@@ -214,23 +214,6 @@
 			<artifactId>commons-beanutils</artifactId>
 			<version>1.9.4</version>
 		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.apache.httpcomponents/httpmime -->
-		<dependency>
-			<groupId>org.apache.httpcomponents</groupId>
-			<artifactId>httpmime</artifactId>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/com.liferay/org.apache.commons.fileupload -->
-		<dependency>
-			<groupId>com.liferay</groupId>
-			<artifactId>org.apache.commons.fileupload</artifactId>
-			<version>1.2.2.LIFERAY-PATCHED-1</version>
-		</dependency>
-		<!-- https://mvnrepository.com/artifact/org.json/json -->
-		<dependency>
-			<groupId>org.json</groupId>
-			<artifactId>json</artifactId>
-			<version>20231013</version>
-		</dependency>
 	</dependencies>
 	<build>
 		<resources>
