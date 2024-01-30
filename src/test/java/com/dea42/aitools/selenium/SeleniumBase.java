@@ -28,13 +28,14 @@ import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.springframework.boot.web.server.LocalServerPort;
-import org.springframework.test.web.servlet.ResultActions;
 
 import com.dea42.aitools.UnitBase;
 import com.dea42.aitools.utils.Utils;
@@ -53,6 +54,8 @@ import lombok.extern.slf4j.Slf4j;
  */
 @Slf4j
 public class SeleniumBase extends UnitBase {
+	public static final String CHROME = "CHROME";
+	public static final String FIREFOX = "FIREFOX";
 
 	@LocalServerPort
 	protected int port;
@@ -61,6 +64,7 @@ public class SeleniumBase extends UnitBase {
 	protected WebDriver driver;
 	protected int timeOutInSeconds = 30;
 	protected boolean useLocal = false;
+	protected String useBrowser = CHROME;
 	// time to pause at the start of each command.
 	protected long speedDelay = 1;
 	protected ResourceBundle bundle;
@@ -367,15 +371,33 @@ public class SeleniumBase extends UnitBase {
 	public void setUp() throws Exception {
 // If downloading and running an exe makes you nervous (and it probably should) set useLocal to true and update path below.
 		if (useLocal) {
-			System.setProperty("webdriver.gecko.driver", "C:\\webdriver\\geckodriver-v0.11.1-win64\\geckodriver.exe");
-			DesiredCapabilities dc = DesiredCapabilities.firefox();
+			DesiredCapabilities dc;
+			if (useBrowser.equals(CHROME)) {
+				System.setProperty("webdriver.gecko.driver",
+						"C:\\webdriver\\geckodriver-v0.11.1-win64\\geckodriver.exe");
+				dc = DesiredCapabilities.chrome();
+			} else {
+				System.setProperty("webdriver.gecko.driver",
+						"C:\\webdriver\\geckodriver-v0.11.1-win64\\geckodriver.exe");
+				dc = DesiredCapabilities.firefox();
+			}
 			dc.setCapability("marionette", true);
 		} else {
-			WebDriverManager.firefoxdriver().setup();
+			if (useBrowser.equals(CHROME)) {
+				WebDriverManager.chromedriver().setup();
+			} else {
+				WebDriverManager.firefoxdriver().setup();
+			}
 		}
-		FirefoxOptions opts = new FirefoxOptions();
-		opts.addArguments("--headless");
-		driver = new FirefoxDriver(opts);
+		if (useBrowser.equals(CHROME)) {
+			ChromeOptions opts = new ChromeOptions();
+			opts.addArguments("--headless");
+			driver = new ChromeDriver(opts);
+		} else {
+			FirefoxOptions opts = new FirefoxOptions();
+			opts.addArguments("--headless");
+			driver = new FirefoxDriver(opts);
+		}
 		if (this.getClass().getName().endsWith("IT"))
 			this.base = "http://localhost:8089/" + context;
 		else

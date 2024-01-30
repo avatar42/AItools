@@ -197,10 +197,11 @@
 			<artifactId>selenium-java</artifactId>
 			<scope>test</scope>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager -->
 		<dependency>
-			<groupId>io.github.bonigarcia</groupId>
-			<artifactId>webdrivermanager</artifactId>
-			<version>2.2.1</version>
+		    <groupId>io.github.bonigarcia</groupId>
+		    <artifactId>webdrivermanager</artifactId>
+		    <version>5.6.3</version>
 		</dependency>
 		<!-- https://mvnrepository.com/artifact/org.codehaus.cargo/cargo-core-container-wildfly -->
 		<dependency>
