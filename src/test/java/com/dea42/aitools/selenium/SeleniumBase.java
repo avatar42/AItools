@@ -64,7 +64,7 @@ public class SeleniumBase extends UnitBase {
 	protected WebDriver driver;
 	protected int timeOutInSeconds = 30;
 	protected boolean useLocal = false;
-	protected String useBrowser = CHROME;
+	protected String useBrowser = FIREFOX;
 	// time to pause at the start of each command.
 	protected long speedDelay = 1;
 	protected ResourceBundle bundle;

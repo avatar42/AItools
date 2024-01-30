@@ -42,6 +42,14 @@ public class SmokeTest extends SeleniumBase {
 	 */
 	@Test
 	public void smokeTest() throws Exception {
-		checkSite();
+		try {
+			checkSite();
+		} catch (Exception e) {
+			e.printStackTrace();
+			if (e.getCause() != null)
+				e.getCause().printStackTrace();
+			
+			throw e;
+		}
 	}
 }
