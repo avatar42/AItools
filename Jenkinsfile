@@ -20,7 +20,7 @@ pipeline {
         stage('Source') {
             steps {
                 // Get some code from a GitHub repository
-                git branch: "main", url: 'https://github.com/avatar42/AItools.gitt'
+                git branch: "main", url: 'https://github.com/avatar42/AItools.git'
             }
         }
         stage('Build') {
