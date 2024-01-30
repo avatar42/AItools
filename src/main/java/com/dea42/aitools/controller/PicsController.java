@@ -1,11 +1,10 @@
 package com.dea42.aitools.controller;
 
-import java.util.Date;
 import java.security.Principal;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Controller;
@@ -15,7 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -24,13 +22,12 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.dea42.aitools.entity.Pics;
 import com.dea42.aitools.form.PicsForm;
-import com.dea42.aitools.paging.PageInfo;
-import com.dea42.aitools.paging.PagingRequest;
 import com.dea42.aitools.search.PicsSearchForm;
 import com.dea42.aitools.service.PicsServices;
 import com.dea42.aitools.utils.Message;
 import com.dea42.aitools.utils.MessageHelper;
 import com.dea42.aitools.utils.Utils;
+
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -66,7 +63,6 @@ public class PicsController {
 			log.debug("stored:" + form);
 	}
 
-
 	@GetMapping
 	public ModelAndView getAll(HttpServletRequest request) {
 		return findPaginated(request, 1, "id", "asc");
@@ -78,8 +74,8 @@ public class PicsController {
 	}
 
 	@PostMapping(value = "/search")
-	public ModelAndView search(HttpServletRequest request, @ModelAttribute PicsSearchForm form, 
-			RedirectAttributes ra, @RequestParam(value = "action", required = true) String action) {
+	public ModelAndView search(HttpServletRequest request, @ModelAttribute PicsSearchForm form, RedirectAttributes ra,
+			@RequestParam(value = "action", required = true) String action) {
 		ModelAndView mav;
 		if (action.equals("search")) {
 			setForm(request, form);

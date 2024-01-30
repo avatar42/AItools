@@ -5,9 +5,11 @@ import javax.validation.ConstraintValidatorContext;
 import org.apache.commons.beanutils.BeanUtils;
 import org.apache.commons.lang3.StringUtils;
 
-import com.dea42.aitools.utils.Utils;
 import com.dea42.aitools.utils.MessageHelper;
+import com.dea42.aitools.utils.Utils;
+
 import lombok.extern.slf4j.Slf4j;
+
 /**
  * Compares two fields to confirm that match mainly for password confirm hence
  * the field name defaults.
@@ -38,9 +40,10 @@ public class FieldMatchValidator extends BaseConstraintValidator<FieldMatch, Obj
 					if (firstObj != null && firstObj.equals(secondObj))
 						return true;
 				}
-				
+
 				if (StringUtils.isBlank((String) firstObj) && StringUtils.isBlank((String) secondObj)) {
-					messageTemplate = Utils.getProp(bundle, MessageHelper.notBlank_message, MessageHelper.notBlank_message);
+					messageTemplate = Utils.getProp(bundle, MessageHelper.notBlank_message,
+							MessageHelper.notBlank_message);
 					storeErrors(context, messageTemplate);
 
 					return false;
