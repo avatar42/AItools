@@ -1,19 +1,18 @@
 package com.dea42.aitools.search;
 
 
-import com.dea42.aitools.UnitBase;
-import com.dea42.aitools.entity.Pics;
-import com.dea42.aitools.search.PicsSearchForm;
-import com.dea42.aitools.service.PicsServices;
-import javax.validation.constraints.NotBlank;
-import lombok.extern.slf4j.Slf4j;
-import org.hibernate.validator.constraints.Length;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import com.dea42.aitools.UnitBase;
+import com.dea42.aitools.entity.Pics;
+import com.dea42.aitools.service.PicsServices;
+
+import lombok.extern.slf4j.Slf4j;
 
 
 /**

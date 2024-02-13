@@ -3,7 +3,6 @@ package com.dea42.aitools.service;
 import java.util.Collections;
 
 import org.apache.commons.lang3.StringUtils;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -18,6 +17,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 import com.dea42.aitools.entity.Account;
 import com.dea42.aitools.repo.UserRepository;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Title: Parent with user login services <br>

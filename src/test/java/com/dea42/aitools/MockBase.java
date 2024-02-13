@@ -17,14 +17,14 @@ import java.util.function.Function;
 
 import javax.servlet.Filter;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.domain.Sort;
 import org.apache.commons.lang3.StringUtils;
 import org.apache.tools.ant.UnsupportedAttributeException;
 import org.junit.Before;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.security.test.web.servlet.request.SecurityMockMvcRequestPostProcessors.UserRequestPostProcessor;
 import org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers;
 import org.springframework.test.web.servlet.ResultActions;
@@ -32,22 +32,22 @@ import org.springframework.test.web.servlet.request.MockHttpServletRequestBuilde
 import org.springframework.test.web.servlet.request.RequestPostProcessor;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
-import com.dea42.aitools.service.UserServices;
-import com.dea42.aitools.repo.UserRepository;
+
 import com.dea42.aitools.repo.AccountRepository;
-import com.dea42.aitools.service.AccountServices;
-import com.dea42.aitools.repo.ServersRepository;
-import com.dea42.aitools.service.ServersServices;
-import com.dea42.aitools.repo.PicsRepository;
-import com.dea42.aitools.service.PicsServices;
-import com.dea42.aitools.repo.DetectionsRepository;
-import com.dea42.aitools.service.DetectionsServices;
 import com.dea42.aitools.repo.ClassesRepository;
+import com.dea42.aitools.repo.DetectionsRepository;
+import com.dea42.aitools.repo.PicsRepository;
+import com.dea42.aitools.repo.ServersRepository;
+import com.dea42.aitools.repo.UserRepository;
+import com.dea42.aitools.service.AccountServices;
 import com.dea42.aitools.service.ClassesServices;
-
-
+import com.dea42.aitools.service.DetectionsServices;
+import com.dea42.aitools.service.PicsServices;
+import com.dea42.aitools.service.ServersServices;
+import com.dea42.aitools.service.UserServices;
 import com.dea42.aitools.utils.Message;
 import com.dea42.aitools.utils.Utils;
+
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -55,37 +55,37 @@ import lombok.extern.slf4j.Slf4j;
  * Description: The base class for mock testing. <br>
  * Copyright: Copyright (c) 2001-2023<br>
  * Company: RMRR<br>
+ * 
  * @author Gened by GenSpring version 0.7.2<br>
  * @version 0.7.2<br>
  */
 @Slf4j
 public class MockBase extends UnitBase {
-    @MockBean
-    protected UserServices<?> userServices;
-    @MockBean
-    protected UserRepository userRepository;
+	@MockBean
+	protected UserServices<?> userServices;
+	@MockBean
+	protected UserRepository userRepository;
 
-     @MockBean
-    protected AccountServices accountServices;
-    @MockBean
-    protected AccountRepository accountRepository;
-    @MockBean
-    protected ServersServices serversServices;
-    @MockBean
-    protected ServersRepository serversRepository;
-    @MockBean
-    protected PicsServices picsServices;
-    @MockBean
-    protected PicsRepository picsRepository;
-    @MockBean
-    protected DetectionsServices detectionsServices;
-    @MockBean
-    protected DetectionsRepository detectionsRepository;
-    @MockBean
-    protected ClassesServices classesServices;
-    @MockBean
-    protected ClassesRepository classesRepository;
-
+	@MockBean
+	protected AccountServices accountServices;
+	@MockBean
+	protected AccountRepository accountRepository;
+	@MockBean
+	protected ServersServices serversServices;
+	@MockBean
+	protected ServersRepository serversRepository;
+	@MockBean
+	protected PicsServices picsServices;
+	@MockBean
+	protected PicsRepository picsRepository;
+	@MockBean
+	protected DetectionsServices detectionsServices;
+	@MockBean
+	protected DetectionsRepository detectionsRepository;
+	@MockBean
+	protected ClassesServices classesServices;
+	@MockBean
+	protected ClassesRepository classesRepository;
 
 	@Autowired
 	protected WebApplicationContext webApplicationContext;
@@ -174,7 +174,7 @@ public class MockBase extends UnitBase {
 		contentContainsKey(result, "app.name");
 		// GUI menu
 		contentContainsKey(result, "header.gui");
-		if ("admin@dea42.com".equals(user)) 
+		if ("admin@dea42.com".equals(user))
 			contentContainsKey(result, "class.Account", false);
 		contentContainsKey(result, "class.Servers", false);
 		contentContainsKey(result, "class.Pics", false);
@@ -182,13 +182,12 @@ public class MockBase extends UnitBase {
 		contentContainsKey(result, "class.Classes", false);
 // REST menu
 		contentContainsKey(result, "header.restApi");
-		if ("admin@dea42.com".equals(user)) 
+		if ("admin@dea42.com".equals(user))
 			contentContainsMarkup(result, "/api/accounts", false);
 		contentContainsMarkup(result, "/api/serverss", false);
 		contentContainsMarkup(result, "/api/picss", false);
 		contentContainsMarkup(result, "/api/detectionss", false);
 		contentContainsMarkup(result, "/api/classess", false);
-
 
 		// Login / out
 		contentContainsKey(result, "lang.en");
@@ -341,6 +340,7 @@ public class MockBase extends UnitBase {
 		log.debug("Returning:" + rtn);
 		return rtn;
 	}
+
 	/**
 	 * Converts a List<T> to Page<T> for mock returns
 	 * 
@@ -435,5 +435,3 @@ public class MockBase extends UnitBase {
 		return p;
 	}
 }
-
-

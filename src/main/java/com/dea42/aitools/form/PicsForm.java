@@ -1,11 +1,12 @@
 package com.dea42.aitools.form;
 
-import com.dea42.aitools.entity.Pics;
-import com.dea42.aitools.utils.MessageHelper;
 import java.io.Serializable;
-import javax.validation.constraints.NotBlank;
-import lombok.Data;
+
 import org.hibernate.validator.constraints.Length;
+
+import com.dea42.aitools.entity.Pics;
+
+import lombok.Data;
 
 /**
  * Title: pics Form <br>

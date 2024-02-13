@@ -1,6 +1,15 @@
 package com.dea42.aitools.service;
 
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.lang3.StringUtils;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
 import com.dea42.aitools.entity.Classes;
 import com.dea42.aitools.paging.Column;
 import com.dea42.aitools.paging.Direction;
@@ -13,17 +22,8 @@ import com.dea42.aitools.search.SearchCriteria;
 import com.dea42.aitools.search.SearchOperation;
 import com.dea42.aitools.search.SearchSpecification;
 import com.dea42.aitools.search.SearchType;
-import com.dea42.aitools.utils.Utils;
-import java.math.BigDecimal;
-import java.util.List;
-import javax.servlet.http.HttpServletRequest;
+
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
 
 
 /**
@@ -73,6 +73,7 @@ public class ClassesServices {
 
 		} else {
 			form = new ClassesSearchForm();
+			form.setPageSize(Integer.MAX_VALUE);
 		}
 
 		// OR queries assume at least one SearchCriteria or return nothing

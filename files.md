@@ -2,6 +2,7 @@ DB:jdbc:sqlite:D:/tmp/ws/AItools/AItoolsDB.sqlite<br>
 pom.xml<br>
 README.md<br>
 files.md<br>
+./src/main/java/com/dea42/aitools/client/Client.java<br>
 ./src/main/java/com/dea42/aitools/controller/AccountController.java<br>
 ./src/main/java/com/dea42/aitools/controller/ApiController.java<br>
 ./src/main/java/com/dea42/aitools/controller/AppController.java<br>
@@ -61,12 +62,14 @@ files.md<br>
 ./src/main/java/com/dea42/aitools/service/UserServices.java<br>
 ./src/main/java/com/dea42/aitools/ServletInitializer.java<br>
 ./src/main/java/com/dea42/aitools/utils/ExceptionHandler.java<br>
+./src/main/java/com/dea42/aitools/utils/FileIO.java<br>
 ./src/main/java/com/dea42/aitools/utils/Message.java<br>
 ./src/main/java/com/dea42/aitools/utils/MessageHelper.java<br>
 ./src/main/java/com/dea42/aitools/utils/Utils.java<br>
 ./src/main/java/com/dea42/aitools/WebAppApplication.java<br>
 ./src/main/resources/app.properties<br>
 ./src/main/resources/application.properties<br>
+./src/main/resources/client.properties<br>
 ./src/main/resources/log4j2.xml<br>
 ./src/main/resources/messages.properties<br>
 ./src/main/resources/messages_de.properties<br>
@@ -75,6 +78,7 @@ files.md<br>
 ./src/main/resources/templates/accounts.html<br>
 ./src/main/resources/templates/api_index.html<br>
 ./src/main/resources/templates/classess.html<br>
+./src/main/resources/templates/client.properties<br>
 ./src/main/resources/templates/detectionss.html<br>
 ./src/main/resources/templates/edit_account.html<br>
 ./src/main/resources/templates/edit_classes.html<br>
@@ -104,6 +108,7 @@ files.md<br>
 ./src/main/webapp/public/resources/sheet.css<br>
 ./src/main/webapp/resources/css/site.css<br>
 ./src/main/webapp/WEB-INF/web.xml<br>
+./src/test/java/com/dea42/aitools/client/ClientTest.java<br>
 ./src/test/java/com/dea42/aitools/controller/AccountControllerTest.java<br>
 ./src/test/java/com/dea42/aitools/controller/ApiControllerTest.java<br>
 ./src/test/java/com/dea42/aitools/controller/AppControllerTest.java<br>
@@ -123,6 +128,7 @@ files.md<br>
 ./src/test/java/com/dea42/aitools/selenium/SmokeIT.java<br>
 ./src/test/java/com/dea42/aitools/selenium/SmokeTest.java<br>
 ./src/test/java/com/dea42/aitools/UnitBase.java<br>
+./src/test/java/com/dea42/aitools/utils/FileIOTest.java<br>
 ./src/test/java/com/dea42/aitools/WebAppApplicationTest.java<br>
 ./src/test/resources/rename.properties<br>
 ./src/test/resources/test.properties<br>

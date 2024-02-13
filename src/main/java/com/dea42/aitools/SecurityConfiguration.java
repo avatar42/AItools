@@ -65,11 +65,11 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter implemen
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable().authorizeRequests() //.antMatchers("/**").permitAll();
+		http.csrf().disable().authorizeRequests()
 				.antMatchers("/", "/api/*", "/error", "/home/*", "/public/**", "/resources/**","/webjars/**", "/signup", "/favicon.ico",
 						"/authenticate", "/international")
 				.permitAll().anyRequest().authenticated().and().formLogin().loginPage("/login")
-//				// TODO: added successForwardUrl("/home") to get around first click of login
+//				// added successForwardUrl("/home") to get around first click of login
 //				// redirecting to font but need to sort how to back it go back where we came
 //				// from
 				.successForwardUrl("/home").permitAll().failureUrl("/login?error=1").and().logout().logoutUrl("/logout")

@@ -1,13 +1,13 @@
 package com.dea42.aitools.search;
 
-import com.dea42.aitools.entity.Detections;
-import com.dea42.aitools.utils.MessageHelper;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import javax.validation.constraints.NotBlank;
-import lombok.Data;
+
 import org.springframework.data.domain.Sort;
-import org.springframework.format.annotation.DateTimeFormat;
+
+import com.dea42.aitools.entity.Detections;
+
+import lombok.Data;
 
 
 /**

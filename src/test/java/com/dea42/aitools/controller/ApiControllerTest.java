@@ -18,10 +18,10 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.dea42.aitools.MockBase;
 import com.dea42.aitools.entity.Account;
-import com.dea42.aitools.entity.Servers;
-import com.dea42.aitools.entity.Pics;
-import com.dea42.aitools.entity.Detections;
 import com.dea42.aitools.entity.Classes;
+import com.dea42.aitools.entity.Detections;
+import com.dea42.aitools.entity.Pics;
+import com.dea42.aitools.entity.Servers;
 
 /**
  * Title: ApiControllerTest <br>

@@ -1,24 +1,18 @@
 package com.dea42.aitools.search;
 
 
-import com.dea42.aitools.UnitBase;
-import com.dea42.aitools.controller.FieldMatch;
-import com.dea42.aitools.controller.UniqueEmail;
-import com.dea42.aitools.controller.ValidatePassword;
-import com.dea42.aitools.entity.Account;
-import com.dea42.aitools.search.AccountSearchForm;
-import com.dea42.aitools.service.AccountServices;
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
-import lombok.extern.slf4j.Slf4j;
-import org.hibernate.validator.constraints.Length;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import com.dea42.aitools.UnitBase;
+import com.dea42.aitools.entity.Account;
+import com.dea42.aitools.service.AccountServices;
+
+import lombok.extern.slf4j.Slf4j;
 
 
 /**

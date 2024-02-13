@@ -1,10 +1,10 @@
 package com.dea42.aitools.form;
 
-import com.dea42.aitools.entity.Detections;
-import com.dea42.aitools.utils.MessageHelper;
 import java.io.Serializable;
 import java.math.BigDecimal;
-import javax.validation.constraints.NotBlank;
+
+import com.dea42.aitools.entity.Detections;
+
 import lombok.Data;
 
 /**

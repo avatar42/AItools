@@ -1,19 +1,20 @@
 package com.dea42.aitools.search;
 
 
-import com.dea42.aitools.UnitBase;
-import com.dea42.aitools.entity.Detections;
-import com.dea42.aitools.search.DetectionsSearchForm;
-import com.dea42.aitools.service.DetectionsServices;
 import java.math.BigDecimal;
-import javax.validation.constraints.NotBlank;
-import lombok.extern.slf4j.Slf4j;
+
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import com.dea42.aitools.UnitBase;
+import com.dea42.aitools.entity.Detections;
+import com.dea42.aitools.service.DetectionsServices;
+
+import lombok.extern.slf4j.Slf4j;
 
 
 /**

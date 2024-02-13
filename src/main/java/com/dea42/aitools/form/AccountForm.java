@@ -1,16 +1,20 @@
 package com.dea42.aitools.form;
 
+import java.io.Serializable;
+
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+
+import org.hibernate.validator.constraints.Length;
+
 import com.dea42.aitools.controller.FieldMatch;
 import com.dea42.aitools.controller.UniqueEmail;
 import com.dea42.aitools.controller.ValidatePassword;
 import com.dea42.aitools.entity.Account;
 import com.dea42.aitools.utils.MessageHelper;
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import java.io.Serializable;
-import javax.validation.constraints.Email;
-import javax.validation.constraints.NotBlank;
+
 import lombok.Data;
-import org.hibernate.validator.constraints.Length;
 
 /**
  * Title: account Form <br>

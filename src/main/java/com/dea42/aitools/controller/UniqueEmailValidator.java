@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import com.dea42.aitools.service.AccountServices;
 import com.dea42.aitools.utils.Utils;
+
 import lombok.extern.slf4j.Slf4j;
 /**
  * Check to see if email is already used by a user if used on form instead of
