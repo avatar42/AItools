@@ -1,12 +1,12 @@
 package com.dea42.aitools.search;
 
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.dea42.aitools.UnitBase;
 import com.dea42.aitools.entity.Account;
@@ -25,9 +25,9 @@ import lombok.extern.slf4j.Slf4j;
  * @version 0.7.2<br>
  */
 @Slf4j
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
-public class AccountSearchTest extends UnitBase {
+class AccountSearchTest extends UnitBase {
 
 	@Autowired
 	private AccountServices accountServices;
@@ -64,7 +64,7 @@ public class AccountSearchTest extends UnitBase {
 	}
 
 	@Test
-	public void testEmail() {
+	 void testEmail() {
 		// email String 12
 		Account rec = null;
 		AccountSearchForm form = new AccountSearchForm();
@@ -96,7 +96,7 @@ public class AccountSearchTest extends UnitBase {
 	}
 
 	@Test
-	public void testName() {
+	 void testName() {
 		// name String 12
 		Account rec = null;
 		AccountSearchForm form = new AccountSearchForm();
@@ -128,7 +128,7 @@ public class AccountSearchTest extends UnitBase {
 	}
 
 	@Test
-	public void testPassword() {
+	 void testPassword() {
 		// password String 12
 		Account rec = null;
 		AccountSearchForm form = new AccountSearchForm();
@@ -160,7 +160,7 @@ public class AccountSearchTest extends UnitBase {
 	}
 
 	@Test
-	public void testUserrole() {
+	 void testUserrole() {
 		// userrole String 12
 		Account rec = null;
 		AccountSearchForm form = new AccountSearchForm();

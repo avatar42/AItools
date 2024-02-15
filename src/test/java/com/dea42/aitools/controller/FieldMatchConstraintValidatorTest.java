@@ -11,7 +11,7 @@ import javax.validation.Validator;
 import javax.validation.ValidatorFactory;
 
 import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import com.dea42.aitools.UnitBase;
 import com.dea42.aitools.form.ValidatorTestForm;

@@ -10,11 +10,11 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.data.domain.Page;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.dea42.aitools.MockBase;
 import com.dea42.aitools.entity.Account;
@@ -32,7 +32,7 @@ import com.dea42.aitools.entity.Servers;
  * @author Gened by com.dea42.build.GenSpring version 0.7.2<br>
  * @version 0.7.2<br>
  */
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @WebMvcTest(ApiController.class)
 public class ApiControllerTest extends MockBase {
 

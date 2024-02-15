@@ -4,11 +4,11 @@ import java.util.HashSet;
 import java.util.ResourceBundle;
 import java.util.Set;
 
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.test.context.ContextConfiguration;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.MockMvc;
 
 import com.dea42.aitools.controller.AppController;
@@ -23,15 +23,16 @@ import junit.framework.TestCase;
  * Description: The base class for testing. <br>
  * Copyright: Copyright (c) 2001-2023<br>
  * Company: RMRR<br>
+ * 
  * @author Gened by GenSpring version 0.7.2<br>
  * @version 0.7.2<br>
  */
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @ContextConfiguration
 public abstract class UnitBase extends TestCase {
 	private static final String strVal = "ABCDEFGHIJKLMNOPQRSTUVWXYZ01234567890abcdefghijklmnopqrstuvwzyz";
 	protected static final Logger LOGGER = LoggerFactory.getLogger(UnitBase.class.getName());
-	public static long DAY = 1000 * 60 * 60 * 24; 
+	public static long DAY = 1000 * 60 * 60 * 24;
 
 	public static final String SEND_GET = "GET";
 	public static final String SEND_POST = "POST";

@@ -1,19 +1,17 @@
 package com.dea42.aitools.search;
 
-
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.dea42.aitools.UnitBase;
 import com.dea42.aitools.entity.Classes;
 import com.dea42.aitools.service.ClassesServices;
 
 import lombok.extern.slf4j.Slf4j;
-
 
 /**
  * Title: classesSearch Test <br>
@@ -25,15 +23,15 @@ import lombok.extern.slf4j.Slf4j;
  * @version 0.7.2<br>
  */
 @Slf4j
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
-public class ClassesSearchTest extends UnitBase {
+class ClassesSearchTest extends UnitBase {
 
 	@Autowired
 	private ClassesServices classesServices;
 
 	private Page<Classes> confirmGotResult(ClassesSearchForm form, Integer expectedID) {
-		log.info("form:"+form);
+		log.info("form:" + form);
 		Page<Classes> list = classesServices.listAll(form);
 		assertNotNull("Checking return not null", list);
 		assertTrue("Checking at least 1 return", list.toList().size() > 0);
@@ -60,11 +58,10 @@ public class ClassesSearchTest extends UnitBase {
 			record = size / 2;
 		return list.toList().get(record);
 
-
 	}
 
 	@Test
-	public void testActive() {
+	void testActive() {
 		// active Integer 4
 		Classes rec = null;
 		ClassesSearchForm form = new ClassesSearchForm();
@@ -98,7 +95,7 @@ public class ClassesSearchTest extends UnitBase {
 	}
 
 	@Test
-	public void testCatagory() {
+	void testCatagory() {
 		// catagory String 12
 		Classes rec = null;
 		ClassesSearchForm form = new ClassesSearchForm();
@@ -130,7 +127,7 @@ public class ClassesSearchTest extends UnitBase {
 	}
 
 	@Test
-	public void testClassname() {
+	void testClassname() {
 		// classname String 12
 		Classes rec = null;
 		ClassesSearchForm form = new ClassesSearchForm();
@@ -162,7 +159,7 @@ public class ClassesSearchTest extends UnitBase {
 	}
 
 	@Test
-	public void testGrp() {
+	void testGrp() {
 		// grp String 12
 		Classes rec = null;
 		ClassesSearchForm form = new ClassesSearchForm();
@@ -194,7 +191,7 @@ public class ClassesSearchTest extends UnitBase {
 	}
 
 	@Test
-	public void testReplacewith() {
+	void testReplacewith() {
 		// replacewith String 12
 		Classes rec = null;
 		ClassesSearchForm form = new ClassesSearchForm();

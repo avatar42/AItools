@@ -2,10 +2,10 @@ package com.dea42.aitools.controller;
 
 import static org.mockito.BDDMockito.given;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.servlet.ResultActions;
 
 import com.dea42.aitools.MockBase;
@@ -16,7 +16,7 @@ import com.dea42.aitools.service.UserServices;
 import com.dea42.aitools.utils.MessageHelper;
 import com.google.common.collect.ImmutableMap;
 
-@RunWith(SpringJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 @WebMvcTest(AppController.class)
 public class AppControllerTest extends MockBase {
 

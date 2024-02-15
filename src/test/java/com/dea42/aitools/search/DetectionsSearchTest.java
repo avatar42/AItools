@@ -3,12 +3,12 @@ package com.dea42.aitools.search;
 
 import java.math.BigDecimal;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.dea42.aitools.UnitBase;
 import com.dea42.aitools.entity.Detections;
@@ -27,7 +27,7 @@ import lombok.extern.slf4j.Slf4j;
  * @version 0.7.2<br>
  */
 @Slf4j
-@RunWith(SpringRunner.class)
+@ExtendWith(SpringExtension.class)
 @SpringBootTest
 public class DetectionsSearchTest extends UnitBase {
 

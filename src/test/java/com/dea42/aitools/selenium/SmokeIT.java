@@ -3,9 +3,9 @@
  */
 package com.dea42.aitools.selenium;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.BlockJUnit4ClassRunner;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 /**
  * Basic smoke test to check app works.
@@ -13,7 +13,7 @@ import org.junit.runners.BlockJUnit4ClassRunner;
  * @author GenSpring
  *
  */
-@RunWith(BlockJUnit4ClassRunner.class)
+@ExtendWith(SpringExtension.class)
 public class SmokeIT extends SeleniumBase {
 
 	/**
